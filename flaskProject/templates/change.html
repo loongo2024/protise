@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户更改页面</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body style="background-image: url('/static/a5.png');background-size: cover;background-attachment: fixed">
+<div style="width: 500px;height: 400px;margin: 100px auto" >
+    <form class="layui-form" action="/changed/{{ use.user }}" method="POST">
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+          <input value="{{ use.user }}" type="text" name="user" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-inline">
+          <input value="{{ use.age }}" type="text" name="age" required lay-verify="required" placeholder="请输入部门" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+          <input value="{{ use.buff }}" type="text" name="buff" required lay-verify="required" placeholder="请输入部门" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">身高</label>
+        <div class="layui-input-inline">
+          <input value="{{ use.height }}" type="text" name="height" required lay-verify="required" placeholder="请输入部门" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">体重</label>
+        <div class="layui-input-inline">
+          <input value="{{ use.weight }}" type="text" name="weight" required lay-verify="required" placeholder="请输入部门" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+</div>
+<script src="/static/layui.js"></script>
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form
+/*
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+ */
+})
+</script>
+</body>
+</html>

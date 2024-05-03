@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body style="background-image: url('/static/a3.png');background-size: cover;background-attachment: fixed">
+<script>
+        function get_input_value(){
+            // var name = $('input[name="username"]').val();
+            // alert(name);
+            var name = document.getElementById("user").value;
+            var url = "/find/" + name;
+            // console.log("name"+name);
+            alert('您查询的姓名是' + name);
+            document.getElementById('queryLink').href = url;
+
+        }
+</script>
+<div style="width: 800px;height: 400px;margin: 10px auto">
+  <div class="layui-form-item">
+    <div class="layui-input-group">
+      <input id="user" type="text" placeholder="请输入要查询的姓名" class="layui-input" style="width: 200px;height: 50px">
+      <div class="layui-input-suffix">
+          <a id = 'queryLink' href='#'>
+            <button onclick="get_input_value()" class="layui-btn layui-btn-primary layui-border-blue">查询</button>
+          </a>
+      </div>
+    </div>
+  </div>
+    <table lay-filter="demo">
+      <thead>
+        <tr>
+          <th lay-data="{field:'user'}">姓名</th>
+          <th lay-data="{field:'age'}">年龄</th>
+          <th lay-data="{field:'buff'}">状态</th>
+          <th lay-data="{field:'height'}">身高</th>
+          <th lay-data="{field:'weight'}">体重</th>
+          <th lay-data="{field:'option'}">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for parents in passwold_book %}
+        <tr>
+          <td>{{ parents.user }}</td>
+          <td>{{ parents.age }}</td>
+          <td>{{ parents.buff }}</td>
+          <td>{{ parents.height }}</td>
+          <td>{{ parents.weight }}</td>
+          <td>
+              <a href="/change/{{ parents.user }}" class="layui-btn layui-btn-sm">修改</a>
+              <a href="/delete/{{ parents.user }}" class="layui-btn layui-btn-danger layui-btn-sm">删除</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <a href="/add" class="layui-btn">新增用户</a>
+</div>
+<script src="/static/layui.js"></script>
+<script>
+  layui.use('form', function () {
+    var table = layui.table
+
+    //转换静态表格
+    table.init('demo', {
+      height: 315 //设置高度
+      , limit: 100//注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+      , width: 1000//支持所有基础参数
+    })
+
+  })
+</script>
+</body>
+</html>
